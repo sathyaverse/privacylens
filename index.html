@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Lens | In-Browser AI Sensitive Image Protection</title>
+  <meta name="description" content="Privacy Lens is a web application designed to detect and protect sensitive personal information in images using client-side OCR and Holographic Flow privacy masking.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="landing-page">
+  <!-- Ambient Interactive Canvas for Holographic Waves & Particles -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="ambient-glow-cursor" id="ambientGlow"></div>
+
+  <!-- Main Wrapper -->
+  <div class="landing-layout">
+    
+    <!-- Top Glass Navigation Bar -->
+    <nav class="landing-nav glass-panel">
+      <div class="nav-left">
+        <a href="index.html" class="logo-wrapper text-decoration-none">
+          <div class="logo-icon-glow">
+            <svg class="lens-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="9" stroke="url(#hologram-grad)" stroke-width="2"/>
+              <path d="M12 7v10M7 12h10" stroke="#06b6d4" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="3" fill="#ff0055" filter="drop-shadow(0 0 6px #ff0055)"/>
+              <defs>
+                <linearGradient id="hologram-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8b5cf6"/>
+                  <stop offset="50%" stop-color="#ec4899"/>
+                  <stop offset="100%" stop-color="#06b6d4"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1 class="brand-title">Privacy<span class="text-holographic">Lens</span></h1>
+            <span class="brand-tagline">Holographic Flow &bull; Midnight Glass</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#security" class="nav-link">Security Matrix</a>
+        <a href="#use-cases" class="nav-link">Use Cases</a>
+      </div>
+
+      <div class="nav-actions">
+        <div class="privacy-badge glass-pill hide-mobile">
+          <span class="pulse-dot"></span>
+          <span class="badge-text">100% Client-Side</span>
+        </div>
+        <a href="app.html" class="btn-primary-holographic btn-nav-cta">
+          <span>Launch Studio</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        
+        <div class="hero-announcement glass-pill">
+          <span class="announcement-sparkle">✨</span>
+          <span class="announcement-text">Zero-Server Image Privacy &bull; In-Browser OCR Engine</span>
+          <span class="badge-new">v1.0</span>
+        </div>
+
+        <h1 class="hero-headline">
+          Detect & Protect <br>
+          <span class="text-holographic">Sensitive Data in Images</span> <br>
+          Before You Share.
+        </h1>
+
+        <p class="hero-description">
+          Sharing screenshots online unintentionally exposes phone numbers, email addresses, national IDs, and bank details. 
+          <strong>Privacy Lens</strong> runs client-side optical character recognition to automatically locate confidential text, visually highlighting vulnerabilities in 
+          <span class="text-pink">pulsing neon</span> and empowering you to selectively blur or redact them before posting.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="app.html" class="btn-primary-holographic btn-hero-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 12 14 22 4"/></svg>
+            <span>Launch Privacy Lens Studio</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#how-it-works" class="btn-glass btn-hero-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            <span>Explore Architecture</span>
+          </a>
+        </div>
+
+        <div class="hero-trust-row">
+          <div class="trust-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>No Cloud Uploads</span>
+          </div>
+          <div class="trust-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Exif Metadata Stripping</span>
+          </div>
+          <div class="trust-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Vercel Cloud Deployable</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hero Interactive Holographic Preview Card -->
+      <div class="hero-visual">
+        <div class="hero-preview-wrapper">
+          <div id="heroMockupCard" class="glass-card hero-glass-card">
+            
+            <!-- Window Topbar -->
+            <div class="hero-card-header">
+              <div class="window-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="hero-card-title">
+                <span class="scanner-status-dot"></span>
+                <span>PrivacyLens_Realtime_Scanner.png</span>
+              </div>
+              <div class="hero-card-actions">
+                <button id="heroToggleMaskBtn" class="btn-micro-action" title="Toggle Simulation">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                  Simulate Masking
+                </button>
+              </div>
+            </div>
+
+            <!-- Simulated Document with Laser Scan -->
+            <div class="hero-doc-body">
+              <!-- Holographic Sweeping Laser Beam -->
+              <div class="hero-scanner-line">
+                <div class="laser-cone"></div>
+              </div>
+
+              <!-- ID Document Simulation -->
+              <div class="hero-doc-header">
+                <div class="hero-doc-badge">GOVERNMENT IDENTIFICATION CARD</div>
+                <span id="heroScoreBadge" class="status-badge status-danger">High Risk (3 Leaks)</span>
+              </div>
+
+              <div class="hero-doc-grid">
+                <div class="hero-avatar-box">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+                </div>
+                <div class="hero-fields">
+                  <div class="hero-field-row">
+                    <span class="hero-field-label">Full Name:</span>
+                    <span class="hero-field-val">Rohan K. Sharma</span>
+                  </div>
+
+                  <div class="hero-field-row">
+                    <span class="hero-field-label">Mobile Number:</span>
+                    <div id="heroPhone" class="hero-data-box detected-pink">
+                      <span class="data-text">+91 98765 43210</span>
+                      <span class="data-tag">PHONE</span>
+                    </div>
+                  </div>
+
+                  <div class="hero-field-row">
+                    <span class="hero-field-label">Email Address:</span>
+                    <div id="heroEmail" class="hero-data-box detected-pink">
+                      <span class="data-text">rohan.sharma@gmail.com</span>
+                      <span class="data-tag">EMAIL</span>
+                    </div>
+                  </div>
+
+                  <div class="hero-field-row">
+                    <span class="hero-field-label">Aadhaar / SSN:</span>
+                    <div id="heroUid" class="hero-data-box detected-pink">
+                      <span class="data-text">4582 9104 3821</span>
+                      <span class="data-tag">GOVT UID</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-doc-footer">
+                <span class="hero-doc-hint">💡 Hover & click simulate button to test selective blur & blackout</span>
+                <span class="hero-doc-tag">100% In-Browser</span>
+              </div>
+            </div>
+
+            <!-- Mini floating badge -->
+            <div class="floating-stat-pill glass-pill">
+              <span class="stat-dot-green"></span>
+              <span>Optical Pattern Matcher Active</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Metrics / Architecture Strip -->
+    <section class="metrics-strip glass-panel">
+      <div class="metric-card">
+        <span class="metric-number text-holographic">0 Bytes</span>
+        <span class="metric-label">Server Uploads (100% Client-Side)</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric-card">
+        <span class="metric-number text-cyan">&lt; 1.2s</span>
+        <span class="metric-label">Neural OCR Extraction Latency</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric-card">
+        <span class="metric-number text-pink">8+ Formats</span>
+        <span class="metric-label">Auto-Detected Sensitive Patterns</span>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric-card">
+        <span class="metric-number text-purple">3 Modes</span>
+        <span class="metric-label">Gaussian Blur, Cyber Redact & Pixelate</span>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="section-block">
+      <div class="section-header text-center">
+        <div class="section-pill glass-pill">Workflow</div>
+        <h2 class="section-title">How Privacy Lens Protects You</h2>
+        <p class="section-subtitle">A seamless 4-step client-side pipeline transforming exposed photos into securely masked assets.</p>
+      </div>
+
+      <div class="steps-grid">
+        
+        <div class="step-card glass-card">
+          <div class="step-num-badge">01</div>
+          <div class="step-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <h3 class="step-title">Upload or Drop</h3>
+          <p class="step-text">Drag any screenshot, ID card, medical slip, or bill. Your image is held purely in local browser memory without network transfers.</p>
+        </div>
+
+        <div class="step-card glass-card">
+          <div class="step-num-badge">02</div>
+          <div class="step-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+          </div>
+          <h3 class="step-title">Neural OCR Scanning</h3>
+          <p class="step-text">Our client-side engine executes optical character recognition while our holographic laser scanner tracks coordinates in real-time.</p>
+        </div>
+
+        <div class="step-card glass-card">
+          <div class="step-num-badge">03</div>
+          <div class="step-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </div>
+          <h3 class="step-title">Pink/Red Detection & Mask</h3>
+          <p class="step-text">Vulnerabilities are outlined in neon pink/red. Toggle individual items or apply one-click Gaussian blur or cyber blackout.</p>
+        </div>
+
+        <div class="step-card glass-card">
+          <div class="step-num-badge">04</div>
+          <div class="step-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <h3 class="step-title">Safe Export & Share</h3>
+          <p class="step-text">Download the sanitized image with EXIF metadata stripped, copy straight to clipboard, and inspect the JSON privacy audit report.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section-block">
+      <div class="section-header text-center">
+        <div class="section-pill glass-pill">Capabilities</div>
+        <h2 class="section-title">Engineered for Absolute Confidentiality</h2>
+        <p class="section-subtitle">Combining cutting-edge in-browser machine vision with a bespoke Holographic Flow + Midnight Glass aesthetic.</p>
+      </div>
+
+      <div class="features-grid">
+        
+        <div class="feature-card glass-card">
+          <div class="feature-icon-box cyan-glow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M15 8h2M15 12h2M7 16h10"/></svg>
+          </div>
+          <h3 class="feature-title">National Identification Guard</h3>
+          <p class="feature-desc">Recognizes structured ID formats including Indian Aadhaar (12-digit spaced), PAN cards, US Social Security Numbers (SSN), and passport numbers.</p>
+        </div>
+
+        <div class="feature-card glass-card">
+          <div class="feature-icon-box pink-glow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h3 class="feature-title">Contact & Phone Filtering</h3>
+          <p class="feature-desc">Filters domestic and international phone numbers (E.164, Indian 10-digit, US formats) and corporate or personal email addresses.</p>
+        </div>
+
+        <div class="feature-card glass-card">
+          <div class="feature-icon-box violet-glow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h3 class="feature-title">Financial & Card Redaction</h3>
+          <p class="feature-desc">Detects 16-digit credit and debit card numbers, expiry dates, CVVs, transaction amounts, and invoice line items.</p>
+        </div>
+
+        <div class="feature-card glass-card">
+          <div class="feature-icon-box cyan-glow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/></svg>
+          </div>
+          <h3 class="feature-title">Custom Drag & Draw Tool</h3>
+          <p class="feature-desc">Need to hide a face, physical address, handwritten signature, or company stamp? Simply drag and draw a custom bounding box anywhere.</p>
+        </div>
+
+        <div class="feature-card glass-card">
+          <div class="feature-icon-box pink-glow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="feature-title">Privacy Health Meter</h3>
+          <p class="feature-desc">Real-time risk scoring gauge calculating the ratio of exposed vulnerabilities versus secured items, achieving 100% Protected rating upon masking.</p>
+        </div>
+
+        <div class="feature-card glass-card">
+          <div class="feature-icon-box violet-glow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <h3 class="feature-title">Triple Masking Engine</h3>
+          <p class="feature-desc">Switch seamlessly between Gaussian Glass Blur (smooth obscurity), Midnight Cyber Blackout (with micro-lock), or retro Mosaic Pixelation.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Security Comparison Section -->
+    <section id="security" class="section-block">
+      <div class="section-header text-center">
+        <div class="section-pill glass-pill">Architecture</div>
+        <h2 class="section-title">Why In-Browser OCR Matters</h2>
+        <p class="section-subtitle">Traditional image redactors upload your confidential IDs to cloud databases. Privacy Lens does not.</p>
+      </div>
+
+      <div class="comparison-card glass-panel">
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Security Feature</th>
+                <th class="col-highlight">Privacy Lens</th>
+                <th>Standard Cloud Redaction Apps</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Image Storage & Transits</strong></td>
+                <td class="col-highlight text-cyan"><strong>100% In-Browser Memory</strong> (Zero bytes sent)</td>
+                <td class="text-muted">Uploaded to external servers & stored in S3 buckets</td>
+              </tr>
+              <tr>
+                <td><strong>Data Breach Vulnerability</strong></td>
+                <td class="col-highlight text-cyan"><strong>Zero Risk</strong> (No server database exists)</td>
+                <td class="text-danger">High (Cloud databases can be hacked or leaked)</td>
+              </tr>
+              <tr>
+                <td><strong>Optical Character Recognition</strong></td>
+                <td class="col-highlight text-cyan"><strong>Client-Side WebAssembly OCR</strong></td>
+                <td class="text-muted">Remote Cloud AI APIs</td>
+              </tr>
+              <tr>
+                <td><strong>EXIF & Metadata Removal</strong></td>
+                <td class="col-highlight text-cyan"><strong>Automatic Stripping on Export</strong></td>
+                <td class="text-muted">Often retained or ignored</td>
+              </tr>
+              <tr>
+                <td><strong>Hosting & Cost</strong></td>
+                <td class="col-highlight text-cyan"><strong>Static Cloud Deployment (Vercel)</strong></td>
+                <td class="text-muted">Expensive GPU servers with user subscription fees</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section id="use-cases" class="section-block">
+      <div class="section-header text-center">
+        <div class="section-pill glass-pill">Applications</div>
+        <h2 class="section-title">Built for Everyday Digital Sharing</h2>
+        <p class="section-subtitle">Effortlessly redact screenshots across various everyday workflows.</p>
+      </div>
+
+      <div class="use-cases-grid">
+        <div class="use-case-card glass-card">
+          <div class="use-case-badge">KYC & Identity</div>
+          <h4 class="use-case-title">Sharing ID Proofs Safely</h4>
+          <p class="use-case-desc">Share government identity cards with hotels, employers, or landlords while obscuring the first 8 digits of your Aadhaar or SSN number.</p>
+        </div>
+
+        <div class="use-case-card glass-card">
+          <div class="use-case-badge">Social Media</div>
+          <h4 class="use-case-title">Sharing Chat & App Screenshots</h4>
+          <p class="use-case-desc">Posting a funny conversation on Twitter or Discord? Automatically hide phone numbers, addresses, and full names in a single click.</p>
+        </div>
+
+        <div class="use-case-card glass-card">
+          <div class="use-case-badge">Finances & Billing</div>
+          <h4 class="use-case-title">Receipts & Expense Reports</h4>
+          <p class="use-case-desc">Submit invoices for company reimbursement without exposing your personal credit card numbers, CVVs, or home address.</p>
+        </div>
+
+        <div class="use-case-card glass-card">
+          <div class="use-case-badge">Developers</div>
+          <h4 class="use-case-title">Code Snippets & API Keys</h4>
+          <p class="use-case-desc">Mask accidentally included `.env` tokens, Bearer keys, passwords, and private IP addresses in terminal screenshots.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Banner -->
+    <section class="landing-cta-banner">
+      <div class="cta-inner glass-card">
+        <div class="cta-glow-bg"></div>
+        <div class="cta-content">
+          <h2 class="cta-headline">Ready to Share Images Without Exposing Your Privacy?</h2>
+          <p class="cta-sub">Launch Privacy Lens Studio right in your browser. No downloads, no account required, 100% free and client-side.</p>
+          <div class="cta-btn-wrap">
+            <a href="app.html" class="btn-primary-holographic btn-large-cta">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 12 14 22 4"/></svg>
+              <span>Open Privacy Lens Studio</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+  </div>
+
+  <script src="landing.js"></script>
+</body>
+</html>

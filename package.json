@@ -1,0 +1,21 @@
+{
+  "name": "privacylens",
+  "version": "1.0.0",
+  "description": "Privacy Lens - Holographic Flow + Midnight Glass Sensitive Data Masking Application",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [
+    "privacy",
+    "ocr",
+    "tesseract",
+    "image-redaction",
+    "holographic",
+    "glassmorphism",
+    "client-side"
+  ],
+  "author": "Privacy Lens Team",
+  "license": "MIT"
+}

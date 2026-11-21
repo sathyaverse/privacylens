@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Lens | Cybersecurity Dashboard</title>
+  <meta name="description" content="Privacy Lens Cybersecurity Dashboard - 8 In-Browser Image Privacy & Protection Modules with Zero-Server In-Memory Processing.">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css?v=3.2">
+  <!-- Tesseract.js for Optical Character Recognition -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <!-- JSZip for Batch Image Protection Downloads -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+</head>
+<body class="dashboard-body">
+  <!-- Ambient Interactive Canvas for Holographic Waves & Particles -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="ambient-glow-cursor" id="ambientGlow"></div>
+
+  <div class="dashboard-root">
+    
+    <!-- ======================================================================
+         PERMANENT LEFT SIDEBAR
+         ====================================================================== -->
+    <aside class="cyber-sidebar" id="cyberSidebar">
+      
+      <!-- Brand & Mode -->
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+          <div class="sidebar-logo-glow">
+            <svg class="lens-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="9" stroke="url(#dash-hologram)" stroke-width="2"/>
+              <path d="M12 7v10M7 12h10" stroke="#06b6d4" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="3" fill="#ff0055" filter="drop-shadow(0 0 6px #ff0055)"/>
+              <defs>
+                <linearGradient id="dash-hologram" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8b5cf6"/>
+                  <stop offset="50%" stop-color="#ec4899"/>
+                  <stop offset="100%" stop-color="#06b6d4"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div>
+            <h1 class="sidebar-title">Privacy<span class="text-holographic">Lens</span></h1>
+            <span class="sidebar-subtext">Cyber Security Ops</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-mode-badge">
+        <span class="pulse-dot"></span>
+        <span>Zero-Server Mode (Active)</span>
+      </div>
+
+      <!-- 8 Feature Navigation Items -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Core Analytics</div>
+        
+        <!-- 1. Dashboard -->
+        <a class="sidebar-item active" data-view="view-dashboard">
+          <div class="item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          </div>
+          <span>Dashboard</span>
+          <span class="item-tag">LIVE</span>
+        </a>
+
+        <div class="nav-section-label">Vision & Detection</div>
+
+        <!-- 2. Smart Text Detection -->
+        <a class="sidebar-item" data-view="view-text-detection">
+          <div class="item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+          </div>
+          <span>Smart Text Detection</span>
+          <span class="item-tag">OCR</span>
+        </a>
+
+        <!-- 3. Face Detection -->
+        <a class="sidebar-item" data-view="view-face-detection">
+          <div class="item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/><circle cx="9" cy="8" r="1"/><circle cx="15" cy="8" r="1"/></svg>
+          </div>
+          <span>Face Detection</span>
+          <span class="item-tag">VISION</span>
+        </a>
+
+        <div class="nav-section-label">Redaction & Risk</div>
+
+        <!-- 4. Smart Redaction -->
+        <a class="sidebar-item" data-view="view-smart-redaction">
+          <div class="item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </div>
+          <span>Smart Redaction</span>
+          <span class="item-tag">EDITOR</span>
+        </a>
+
+        <!-- 5. Privacy Risk Score -->
+        <a class="sidebar-item" data-view="view-risk-score">
+          <div class="item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="3"/></svg>
+          </div>
+          <span>Privacy Risk Score</span>
+          <span class="item-tag">AUDIT</span>
+        </a>
+
+        <!-- 6. Before & After Comparison -->
+        <a class="sidebar-item" data-view="view-before-after">
+          <div class="item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+          </div>
+          <span>Before & After</span>
+          <span class="item-tag">SPLIT</span>
+        </a>
+
+        <div class="nav-section-label">Bulk & Forensics</div>
+
+        <!-- 7. Batch Image Protection -->
+        <a class="sidebar-item" data-view="view-batch-protection">
+          <div class="item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="14" rx="2"/><path d="M16 3H6a2 2 0 0 0-2 2v2"/><path d="M22 7v10a2 2 0 0 1-2 2"/></svg>
+          </div>
+          <span>Batch Protection</span>
+          <span class="item-tag">MULTI</span>
+        </a>
+
+        <!-- 8. Metadata Scanner -->
+        <a class="sidebar-item" data-view="view-metadata-scanner">
+          <div class="item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <span>Metadata Scanner</span>
+          <span class="item-tag">EXIF</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <a href="index.html" class="btn-sidebar-home" title="Return to Landing Page">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Exit to Landing Page</span>
+        </a>
+      </div>
+
+    </aside>
+
+    <!-- ======================================================================
+         MAIN CONTENT & 8 WORKSPACES
+         ====================================================================== -->
+    <main class="cyber-main">
+      
+      <!-- Topbar Header -->
+      <header class="dashboard-topbar">
+        <div class="topbar-left">
+          <button id="mobileMenuBtn" class="btn-menu-toggle" aria-label="Toggle Mobile Sidebar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="breadcrumb-trail">
+            <span class="bc-root">Privacy Lens</span>
+            <span class="bc-sep">/</span>
+            <span id="breadcrumbActive" class="bc-active">Dashboard</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="quick-sample-pill">
+            <span class="sample-tag">Load Sample:</span>
+            <button class="btn-topbar-sample" data-sample-action="id">ID Card</button>
+            <button class="btn-topbar-sample" data-sample-action="receipt">Receipt</button>
+            <button class="btn-topbar-sample" data-sample-action="face">Portrait</button>
+          </div>
+          <div class="privacy-badge glass-pill">
+            <span class="pulse-dot"></span>
+            <span>100% Client Memory</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Workspaces Container -->
+      <div class="workspace-container">
+        
+        <!-- ==================================================================
+             WORKSPACE 1: DASHBOARD
+             ================================================================== -->
+        <section id="view-dashboard" class="cyber-view active-view">
+          <div class="view-header">
+            <div>
+              <h2 class="view-headline">Cybersecurity Privacy Ops Center</h2>
+              <p class="view-lead">Real-time surveillance of processed assets, detected privacy vulnerabilities, and remediation metrics.</p>
+            </div>
+            <button class="btn-primary-holographic" onclick="dashboardApp.switchView('view-text-detection')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Scan New Image</span>
+            </button>
+          </div>
+
+          <!-- KPI Cards Grid -->
+          <div class="kpi-grid">
+            <div class="glass-card kpi-card">
+              <div class="kpi-details">
+                <span class="kpi-label">Images Analyzed</span>
+                <span id="kpiTotalImages" class="kpi-value text-cyan">28</span>
+                <span class="kpi-trend trend-info">&uarr; +100% Client-Side</span>
+              </div>
+              <div class="kpi-icon-glow cyan-glow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              </div>
+            </div>
+
+            <div class="glass-card kpi-card">
+              <div class="kpi-details">
+                <span class="kpi-label">Detected Leaks</span>
+                <span id="kpiTotalDetected" class="kpi-value text-pink">74</span>
+                <span class="kpi-trend trend-alert">&bull; Aadhaar, Phones, Cards</span>
+              </div>
+              <div class="kpi-icon-glow pink-glow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
+            </div>
+
+            <div class="glass-card kpi-card">
+              <div class="kpi-details">
+                <span class="kpi-label">Images Protected</span>
+                <span id="kpiTotalProtected" class="kpi-value text-purple">26</span>
+                <span class="kpi-trend trend-safe">&uarr; 92.8% Mitigation</span>
+              </div>
+              <div class="kpi-icon-glow violet-glow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 12 14 22 4"/></svg>
+              </div>
+            </div>
+
+            <div class="glass-card kpi-card">
+              <div class="kpi-details">
+                <span class="kpi-label">Current Risk Level</span>
+                <span id="kpiRiskLevel" class="kpi-value" style="color: #fbbf24;">Medium</span>
+                <span class="kpi-trend trend-safe">&bull; Remediated locally</span>
+              </div>
+              <div class="kpi-icon-glow" style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mid Section: Risk Overview + Modules Quick Jump -->
+          <div class="dashboard-mid-grid">
+            
+            <div class="glass-card activity-table-card">
+              <div class="table-header-row">
+                <h3 class="card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                  Privacy Threat Distribution
+                </h3>
+                <span class="chip-count">8 Categories</span>
+              </div>
+              <div style="padding: 10px 0;">
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                  <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+                      <span class="text-secondary">National IDs (Aadhaar, PAN, SSN)</span>
+                      <span class="text-pink font-bold">34%</span>
+                    </div>
+                    <div style="height: 6px; background: rgba(148,163,184,0.22); border-radius: 99px; overflow: hidden;">
+                      <div style="width: 34%; height: 100%; background: #ff0055; box-shadow: 0 0 10px #ff0055;"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+                      <span class="text-secondary">Phone Numbers & Contact Info</span>
+                      <span class="text-cyan font-bold">28%</span>
+                    </div>
+                    <div style="height: 6px; background: rgba(148,163,184,0.22); border-radius: 99px; overflow: hidden;">
+                      <div style="width: 28%; height: 100%; background: #06b6d4; box-shadow: 0 0 10px #06b6d4;"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+                      <span class="text-secondary">Financial Cards & Account Data</span>
+                      <span class="font-bold" style="color: #ec4899;">22%</span>
+                    </div>
+                    <div style="height: 6px; background: rgba(148,163,184,0.22); border-radius: 99px; overflow: hidden;">
+                      <div style="width: 22%; height: 100%; background: #ec4899; box-shadow: 0 0 10px #ec4899;"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+                      <span class="text-secondary">Human Biometric Faces & Metadata</span>
+                      <span class="font-bold" style="color: #8b5cf6;">16%</span>
+                    </div>
+                    <div style="height: 6px; background: rgba(148,163,184,0.22); border-radius: 99px; overflow: hidden;">
+                      <div style="width: 16%; height: 100%; background: #8b5cf6; box-shadow: 0 0 10px #8b5cf6;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card activity-table-card">
+              <div class="table-header-row">
+                <h3 class="card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  Operational Security Modules
+                </h3>
+                <span class="chip-count">7 Tools Ready</span>
+              </div>
+              <div class="module-shortcuts-grid">
+                <div class="shortcut-btn" onclick="dashboardApp.switchView('view-text-detection')">
+                  <span class="shortcut-title text-cyan">Text OCR</span>
+                  <span class="shortcut-desc">Extract & flag text</span>
+                </div>
+                <div class="shortcut-btn" onclick="dashboardApp.switchView('view-face-detection')">
+                  <span class="shortcut-title text-pink">Face Guard</span>
+                  <span class="shortcut-desc">Detect & blur faces</span>
+                </div>
+                <div class="shortcut-btn" onclick="dashboardApp.switchView('view-smart-redaction')">
+                  <span class="shortcut-title text-purple">Redactor</span>
+                  <span class="shortcut-desc">Custom box editor</span>
+                </div>
+                <div class="shortcut-btn" onclick="dashboardApp.switchView('view-risk-score')">
+                  <span class="shortcut-title text-cyan">Risk Meter</span>
+                  <span class="shortcut-desc">Rule-based scoring</span>
+                </div>
+                <div class="shortcut-btn" onclick="dashboardApp.switchView('view-before-after')">
+                  <span class="shortcut-title text-pink">Comparison</span>
+                  <span class="shortcut-desc">Split visual slider</span>
+                </div>
+                <div class="shortcut-btn" onclick="dashboardApp.switchView('view-metadata-scanner')">
+                  <span class="shortcut-title text-purple">EXIF Clean</span>
+                  <span class="shortcut-desc">Wipe GPS & device info</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Recent Analysis Activity Table -->
+          <div class="glass-card activity-table-card">
+            <div class="table-header-row">
+              <h3 class="card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Recent Image Analysis Activity
+              </h3>
+              <button class="btn-sample" onclick="dashboardApp.clearHistory()">Clear History</button>
+            </div>
+            <div class="cyber-table-wrap">
+              <table class="cyber-table">
+                <thead>
+                  <tr>
+                    <th>Asset Name</th>
+                    <th>Module</th>
+                    <th>Vulnerabilities Detected</th>
+                    <th>Risk Rating</th>
+                    <th>Protection Status</th>
+                    <th>Analyzed Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody id="activityTableBody">
+                  <!-- Populated dynamically via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             WORKSPACE 2: SMART TEXT DETECTION
+             ================================================================== -->
+        <section id="view-text-detection" class="cyber-view">
+          <div class="view-header">
+            <div>
+              <h2 class="view-headline">Smart Text Detection (OCR)</h2>
+              <p class="view-lead">In-browser Tesseract.js neural OCR extracts text and identifies phone numbers, Aadhaar/SSN IDs, bank cards, emails, and credentials.</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn-sample" onclick="dashboardApp.loadSampleIntoWorkspace('text', 'id')">Sample ID Card</button>
+              <button class="btn-sample" onclick="dashboardApp.loadSampleIntoWorkspace('text', 'receipt')">Sample Bill</button>
+            </div>
+          </div>
+
+          <div class="feature-workspace-grid">
+            <div class="glass-card work-canvas-card">
+              <div class="work-toolbar glass-pill">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <button id="ocrScanBtn" class="action-btn-sm btn-cyan" onclick="dashboardApp.runOcrOnCurrent()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+                    <span>Extract & Detect Patterns</span>
+                  </button>
+                  <label class="action-btn-sm btn-ghost" style="cursor: pointer;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <span>Upload Image</span>
+                    <input type="file" accept="image/*" style="display: none;" onchange="dashboardApp.handleImageUpload(event, 'text')">
+                  </label>
+                </div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">
+                  <span id="ocrStatusText">Ready to analyze</span>
+                </div>
+              </div>
+
+              <div class="work-canvas-stage" id="ocrCanvasStage">
+                <canvas id="ocrCanvas"></canvas>
+                <svg id="ocrOverlay" class="detection-overlay"></svg>
+                <div id="ocrLaser" class="scanner-line hidden"></div>
+              </div>
+            </div>
+
+            <!-- OCR Results Panel -->
+            <div class="work-sidebar-card">
+              <div class="glass-card" style="padding: 18px;">
+                <div class="card-header" style="padding: 0 0 12px; margin-bottom: 12px;">
+                  <h3 class="card-title">Extracted Entities</h3>
+                  <span id="ocrFindingsCount" class="chip-count">0 Items</span>
+                </div>
+                <div id="ocrFindingsList" style="max-height: 280px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
+                  <div class="empty-findings">
+                    <p>No text extracted yet.</p>
+                    <span class="empty-sub">Upload an image or pick a sample to scan.</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-card" style="padding: 18px;">
+                <div class="card-header" style="padding: 0 0 12px; margin-bottom: 12px;">
+                  <h3 class="card-title">Raw Extracted Text</h3>
+                  <button class="btn-sample" onclick="dashboardApp.copyExtractedText()">Copy</button>
+                </div>
+                <textarea id="ocrRawText" readonly style="width: 100%; height: 130px; background: rgba(255,255,255,0.7); border: 1px solid rgba(167,139,250,0.3); border-radius: 8px; color: #0f172a; font-family: var(--font-mono); font-size: 0.76rem; padding: 10px; resize: none;"></textarea>
+                <button class="btn-primary-holographic" style="width: 100%; margin-top: 10px; padding: 10px;" onclick="dashboardApp.transferToRedaction()">
+                  <span>Send to Smart Redaction &rarr;</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             WORKSPACE 3: FACE DETECTION
+             ================================================================== -->
+        <section id="view-face-detection" class="cyber-view">
+          <div class="view-header">
+            <div>
+              <h2 class="view-headline">Human Face Detection & Anonymizer</h2>
+              <p class="view-lead">Automatically locates human faces via in-browser computer vision. Choose Gaussian Blur, Pixelation, or Cyber Visor to preserve identity privacy.</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn-sample" onclick="dashboardApp.loadSampleIntoWorkspace('face', 'portrait')">Sample Portrait</button>
+              <button class="btn-sample" onclick="dashboardApp.loadSampleIntoWorkspace('face', 'group')">Sample Group</button>
+            </div>
+          </div>
+
+          <div class="feature-workspace-grid">
+            <div class="glass-card work-canvas-card">
+              <div class="work-toolbar glass-pill">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <button id="btnDetectFaces" class="action-btn-sm btn-cyan" onclick="dashboardApp.runFaceDetection()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+                    <span>Detect Faces</span>
+                  </button>
+                  <label class="action-btn-sm btn-ghost" style="cursor: pointer;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <span>Upload Photo</span>
+                    <input type="file" accept="image/*" style="display: none;" onchange="dashboardApp.handleImageUpload(event, 'face')">
+                  </label>
+                  <button class="action-btn-sm btn-ghost" onclick="dashboardApp.toggleAllFacesMask()">
+                    Toggle All Blur
+                  </button>
+                </div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">
+                  <span id="faceStatusText">Ready</span>
+                </div>
+              </div>
+
+              <div class="work-canvas-stage" id="faceCanvasStage">
+                <div style="position: relative; display: inline-block;">
+                  <canvas id="faceCanvas"></canvas>
+                  <div id="faceOverlayContainer" class="face-box-overlay"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Face Controls Panel -->
+            <div class="work-sidebar-card">
+              <div class="glass-card" style="padding: 18px;">
+                <div class="card-header" style="padding: 0 0 12px; margin-bottom: 12px;">
+                  <h3 class="card-title">Detected Faces</h3>
+                  <span id="faceCountBadge" class="chip-count">0 Faces</span>
+                </div>
+                <div id="faceListContainer" style="max-height: 240px; overflow-y: auto;">
+                  <div class="empty-findings">
+                    <p>No faces scanned yet.</p>
+                    <span class="empty-sub">Upload a portrait or click "Detect Faces".</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-card" style="padding: 18px;">
+                <h4 style="font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 10px;">Face Anonymization Style</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px;">
+                  <button class="action-btn-sm btn-cyan face-style-btn active" data-style="blur" onclick="dashboardApp.setFaceStyle('blur')">Gaussian Blur</button>
+                  <button class="action-btn-sm btn-ghost face-style-btn" data-style="pixelate" onclick="dashboardApp.setFaceStyle('pixelate')">Pixelate</button>
+                  <button class="action-btn-sm btn-ghost face-style-btn" data-style="visor" onclick="dashboardApp.setFaceStyle('visor')">Cyber Visor</button>
+                  <button class="action-btn-sm btn-ghost face-style-btn" data-style="blackout" onclick="dashboardApp.setFaceStyle('blackout')">Blackout</button>
+                </div>
+                <button id="btnDownloadFaceSafe" class="btn-primary-holographic" style="width: 100%;" onclick="dashboardApp.downloadFaceProtected()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span>Download Face-Masked Photo</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             WORKSPACE 4: SMART REDACTION
+             ================================================================== -->
+        <section id="view-smart-redaction" class="cyber-view">
+          <div class="view-header">
+            <div>
+              <h2 class="view-headline">Smart Redaction Studio</h2>
+              <p class="view-lead">Precision redaction with automated vulnerability recognition, interactive manual box drawing, and custom filter intensity.</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn-sample" onclick="dashboardApp.loadSampleIntoWorkspace('redact', 'id')">Sample ID</button>
+              <button class="btn-sample" onclick="dashboardApp.loadSampleIntoWorkspace('redact', 'chat')">Sample Chat</button>
+            </div>
+          </div>
+
+          <div class="feature-workspace-grid">
+            <div class="glass-card work-canvas-card">
+              <div class="work-toolbar glass-pill">
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                  <button id="redactToolSelect" class="tool-btn active" onclick="dashboardApp.setRedactTool('select')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 3 7 18 3-7 7-3L3 3z"/></svg>
+                    <span>Select</span>
+                  </button>
+                  <button id="redactToolDraw" class="tool-btn" onclick="dashboardApp.setRedactTool('draw')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/></svg>
+                    <span>Draw Box</span>
+                  </button>
+                  <div class="toolbar-divider"></div>
+                  <button class="action-btn-sm btn-cyan" onclick="dashboardApp.redactAllItems()">Mask All</button>
+                  <button class="action-btn-sm btn-ghost" onclick="dashboardApp.unmaskAllItems()">Reveal All</button>
+                  <label class="action-btn-sm btn-ghost" style="cursor: pointer;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <span>Upload</span>
+                    <input type="file" accept="image/*" style="display: none;" onchange="dashboardApp.handleImageUpload(event, 'redact')">
+                  </label>
+                </div>
+              </div>
+
+              <div class="work-canvas-stage" id="redactCanvasStage">
+                <div style="position: relative; display: inline-block;">
+                  <canvas id="redactCanvas"></canvas>
+                  <svg id="redactOverlay" class="detection-overlay"></svg>
+                </div>
+              </div>
+
+              <div class="viewport-footer" style="margin-top: 10px;">
+                <span>💡 <em>Click any pink box to toggle mask &bull; Drag to create manual custom redactions</em></span>
+                <span id="redactBoxCount" class="text-cyan">0 Regions Active</span>
+              </div>
+            </div>
+
+            <!-- Redaction Options Panel -->
+            <div class="work-sidebar-card">
+              <div class="glass-card" style="padding: 18px;">
+                <h4 style="font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 12px;">Redaction Filter Style</h4>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+                  <label class="style-choice-row" style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <input type="radio" name="redactStyleRadio" value="blur" checked onchange="dashboardApp.changeRedactStyle('blur')">
+                    <span style="font-size: 0.82rem; color: #fff;">Gaussian Glass Blur</span>
+                  </label>
+                  <label class="style-choice-row" style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <input type="radio" name="redactStyleRadio" value="blackout" onchange="dashboardApp.changeRedactStyle('blackout')">
+                    <span style="font-size: 0.82rem; color: #fff;">Midnight Cyber Redact (`[PROTECTED]`)</span>
+                  </label>
+                  <label class="style-choice-row" style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <input type="radio" name="redactStyleRadio" value="pixelate" onchange="dashboardApp.changeRedactStyle('pixelate')">
+                    <span style="font-size: 0.82rem; color: #fff;">Mosaic Pixelation</span>
+                  </label>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; margin-bottom: 6px;">
+                    <span class="text-secondary">Mask Intensity / Blur Radius:</span>
+                    <span id="intensityLabel" class="text-cyan font-mono">14px</span>
+                  </div>
+                  <input type="range" id="redactIntensitySlider" min="4" max="32" value="14" style="width: 100%; accent-color: var(--accent-cyan);" oninput="dashboardApp.updateIntensity(this.value)">
+                </div>
+
+                <button class="btn-primary-holographic" style="width: 100%;" onclick="dashboardApp.downloadRedactedImage()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span>Download Protected Image</span>
+                </button>
+              </div>
+
+              <div class="glass-card" style="padding: 18px;">
+                <h4 style="font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 10px;">Quick Actions</h4>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <button class="btn-glass" onclick="dashboardApp.copyRedactedToClipboard()">Copy to Clipboard</button>
+                  <button class="btn-glass" onclick="dashboardApp.switchView('view-before-after')">Compare Before & After</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             WORKSPACE 5: PRIVACY RISK SCORE
+             ================================================================== -->
+        <section id="view-risk-score" class="cyber-view">
+          <div class="view-header">
+            <div>
+              <h2 class="view-headline">Rule-Based Privacy Risk Score Engine</h2>
+              <p class="view-lead">Multi-factor severity scoring analyzing exposed identification numbers, contact credentials, biometric data, and financial exposures.</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn-sample" onclick="dashboardApp.loadSampleIntoWorkspace('risk', 'id')">Audit Sample ID</button>
+              <button class="btn-sample" onclick="dashboardApp.loadSampleIntoWorkspace('risk', 'receipt')">Audit Sample Bill</button>
+            </div>
+          </div>
+
+          <div class="feature-workspace-grid">
+            <div class="glass-card work-canvas-card">
+              <div class="work-toolbar glass-pill">
+                <span class="tool-label">Risk Exposure Assessment</span>
+                <label class="action-btn-sm btn-ghost" style="cursor: pointer;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <span>Upload for Audit</span>
+                  <input type="file" accept="image/*" style="display: none;" onchange="dashboardApp.handleImageUpload(event, 'risk')">
+                </label>
+              </div>
+
+              <div class="work-canvas-stage">
+                <canvas id="riskPreviewCanvas"></canvas>
+              </div>
+            </div>
+
+            <!-- Risk Gauge & Recommendations Panel -->
+            <div class="work-sidebar-card">
+              <div class="glass-card score-card" style="padding: 20px;">
+                <div class="card-header" style="padding: 0 0 12px; margin-bottom: 12px;">
+                  <h3 class="card-title">Threat Level Gauge</h3>
+                  <span id="riskVerdictBadge" class="status-badge status-danger">High Risk</span>
+                </div>
+
+                <div class="meter-container" style="padding: 10px 0;">
+                  <div class="meter-circle-wrapper">
+                    <svg class="meter-svg" viewBox="0 0 120 120">
+                      <circle class="meter-bg" cx="60" cy="60" r="50"/>
+                      <circle id="riskScoreGauge" class="meter-progress" cx="60" cy="60" r="50" style="stroke: #ff0055; stroke-dashoffset: 60;"/>
+                    </svg>
+                    <div class="meter-inner-content">
+                      <span id="riskScoreNumber" class="score-number text-pink">85</span>
+                      <span class="score-subtext">Exposure Pts</span>
+                    </div>
+                  </div>
+                  <div class="meter-summary-stats">
+                    <div class="stat-box">
+                      <span id="riskFactorsCount" class="stat-num text-pink">3</span>
+                      <span class="stat-text">Critical Factors</span>
+                    </div>
+                    <div class="stat-box">
+                      <span id="riskStatusDesc" class="stat-num text-cyan" style="font-size: 0.95rem;">Action Needed</span>
+                      <span class="stat-text">Remediation</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="margin-top: 16px;">
+                  <h4 style="font-size: 0.82rem; font-weight: 700; color: #fff; margin-bottom: 8px;">Identified Risk Factors:</h4>
+                  <div id="riskReasonsList" style="display: flex; flex-direction: column; gap: 6px; font-size: 0.78rem;">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+
+                <div style="margin-top: 16px;">
+                  <h4 style="font-size: 0.82rem; font-weight: 700; color: #fff; margin-bottom: 8px;">Actionable Recommendations:</h4>
+                  <div id="riskSuggestionsList" style="display: flex; flex-direction: column; gap: 6px; font-size: 0.78rem; color: var(--text-secondary);">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+
+                <button class="btn-primary-holographic" style="width: 100%; margin-top: 18px;" onclick="dashboardApp.applyRiskRecommendations()">
+                  <span>Apply Recommended Protection (1-Click)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             WORKSPACE 6: BEFORE & AFTER COMPARISON
+             ================================================================== -->
+        <section id="view-before-after" class="cyber-view">
+          <div class="view-header">
+            <div>
+              <h2 class="view-headline">Before & After Visual Comparison</h2>
+              <p class="view-lead">Interactive dual-layer split slider allowing side-by-side verification of original vulnerabilities vs securely masked output.</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn-sample" onclick="dashboardApp.loadSampleIntoWorkspace('compare', 'id')">Compare ID Sample</button>
+              <button class="btn-sample" onclick="dashboardApp.loadSampleIntoWorkspace('compare', 'receipt')">Compare Bill</button>
+            </div>
+          </div>
+
+          <div class="glass-card" style="padding: 20px;">
+            <div class="work-toolbar glass-pill" style="margin-bottom: 16px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <button id="btnViewSplit" class="tool-btn active" onclick="dashboardApp.setCompareMode('split')">Split Slider</button>
+                <button id="btnViewDual" class="tool-btn" onclick="dashboardApp.setCompareMode('dual')">Side by Side</button>
+                <label class="action-btn-sm btn-ghost" style="cursor: pointer;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <span>Upload Image</span>
+                  <input type="file" accept="image/*" style="display: none;" onchange="dashboardApp.handleImageUpload(event, 'compare')">
+                </label>
+              </div>
+              <button class="btn-primary-holographic" style="padding: 8px 16px; font-size: 0.8rem;" onclick="dashboardApp.downloadCompareProtected()">
+                Download Protected Output
+              </button>
+            </div>
+
+            <!-- Comparison Stage -->
+            <div class="comparison-viewport-wrap" id="comparisonContainer">
+              
+              <!-- Split Slider View -->
+              <div id="splitSliderBox" class="split-slider-container">
+                <canvas id="compOriginalCanvas"></canvas>
+                <div id="splitModifiedWrap" class="split-modified-wrap">
+                  <canvas id="compProtectedCanvas"></canvas>
+                </div>
+                <div id="splitHandle" class="split-handle">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 3 12 9 6" transform="translate(12,0) scale(-1,1)"/></svg>
+                </div>
+                <span class="split-label-pill label-original">Original Unmasked</span>
+                <span class="split-label-pill label-protected">Privacy Protected</span>
+              </div>
+
+              <!-- Side by Side Dual View (hidden by default) -->
+              <div id="dualSideBox" class="dual-side-container" style="display: none;">
+                <div class="dual-box">
+                  <span style="font-size: 0.8rem; font-weight: 700; color: var(--neon-pink);">[BEFORE] Unprotected Original</span>
+                  <canvas id="dualOriginalCanvas"></canvas>
+                </div>
+                <div class="dual-box">
+                  <span style="font-size: 0.8rem; font-weight: 700; color: #34d399;">[AFTER] Sanitized & Redacted</span>
+                  <canvas id="dualProtectedCanvas"></canvas>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             WORKSPACE 7: BATCH IMAGE PROTECTION
+             ================================================================== -->
+        <section id="view-batch-protection" class="cyber-view">
+          <div class="view-header">
+            <div>
+              <h2 class="view-headline">Batch Image Protection (Queue Processor)</h2>
+              <p class="view-lead">Process multiple images simultaneously. Extracts sensitive data across batches, applies automated filters, and exports sanitized files individually or as a ZIP.</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn-sample" onclick="dashboardApp.loadBatchSamples()">Load Sample Batch (3 Images)</button>
+              <button class="btn-primary-holographic" style="padding: 8px 16px; font-size: 0.84rem;" onclick="dashboardApp.downloadAllBatchZip()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download All as ZIP</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="glass-card" style="padding: 24px;">
+            <div class="mini-dropzone" id="batchDropzone" onclick="document.getElementById('batchFileInput').click()">
+              <input type="file" id="batchFileInput" multiple accept="image/*" style="display: none;" onchange="dashboardApp.handleBatchUpload(event)">
+              <div class="mini-dropzone-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="14" rx="2"/><path d="M16 3H6a2 2 0 0 0-2 2v2"/><path d="M22 7v10a2 2 0 0 1-2 2"/></svg>
+              </div>
+              <h3 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Drop multiple images or click to select</h3>
+              <p style="font-size: 0.82rem; color: var(--text-secondary);">Batch analysis supports PNG, JPG, and WEBP formats with in-browser concurrency.</p>
+            </div>
+
+            <!-- Batch Processing Status -->
+            <div id="batchProgressWrap" style="margin-top: 18px; display: none;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;">
+                <span id="batchProgressText" class="text-secondary">Analyzing images in queue...</span>
+                <span id="batchProgressPct" class="text-cyan font-mono">0%</span>
+              </div>
+              <div class="scan-progress-bar">
+                <div id="batchProgressBar" class="progress-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Batch Cards Grid -->
+            <div id="batchCardsGrid" class="batch-cards-grid">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             WORKSPACE 8: METADATA SCANNER (EXIF)
+             ================================================================== -->
+        <section id="view-metadata-scanner" class="cyber-view">
+          <div class="view-header">
+            <div>
+              <h2 class="view-headline">Forensic Metadata & EXIF Scanner</h2>
+              <p class="view-lead">Inspect hidden digital footprints embedded in photos: precise GPS latitude/longitude, camera model, shutter speeds, and timestamps. Strip 100% of EXIF markers with one click.</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn-sample" onclick="dashboardApp.loadSampleIntoWorkspace('meta', 'exif')">Sample Photo with GPS</button>
+              <label class="btn-primary-holographic" style="cursor: pointer; padding: 8px 16px; font-size: 0.84rem;">
+                <span>Upload JPEG / Photo</span>
+                <input type="file" accept="image/*" style="display: none;" onchange="dashboardApp.handleImageUpload(event, 'meta')">
+              </label>
+            </div>
+          </div>
+
+          <div class="metadata-view-grid">
+            
+            <!-- Left: Metadata Inspection Data -->
+            <div class="glass-card metadata-card">
+              <div class="card-header" style="padding: 0 0 12px;">
+                <h3 class="card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                  Embedded Forensics
+                </h3>
+                <span id="metaStatusTag" class="status-badge status-danger">GPS Detected</span>
+              </div>
+
+              <!-- GPS Alert -->
+              <div id="metaGpsAlert" class="gps-alert-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                <div>
+                  <strong>Geotag Exposure:</strong> Physical GPS coordinates are embedded in this image file! Anyone viewing this photo can determine your exact location.
+                </div>
+              </div>
+
+              <!-- Metadata Info List -->
+              <div class="metadata-info-list" id="metaDetailsList">
+                <div class="meta-row">
+                  <span class="meta-label">GPS Latitude:</span>
+                  <span class="meta-val val-highlight" id="metaLat">12.9716° N</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">GPS Longitude:</span>
+                  <span class="meta-val val-highlight" id="metaLng">77.5946° E</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Camera Make:</span>
+                  <span class="meta-val" id="metaMake">Apple</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Camera Model:</span>
+                  <span class="meta-val" id="metaModel">iPhone 15 Pro Max</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Original Timestamp:</span>
+                  <span class="meta-val" id="metaDate">2026:11:18 14:32:09</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Lens & Focal Length:</span>
+                  <span class="meta-val" id="metaLens">iPhone 15 Pro Max back triple camera 6.76mm f/1.78</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Software Tool:</span>
+                  <span class="meta-val" id="metaSoftware">iOS 18.2 Camera App</span>
+                </div>
+              </div>
+
+              <button class="btn-clean-meta" onclick="dashboardApp.stripAndDownloadClean()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 12 14 22 4"/></svg>
+                <span>Strip All EXIF Metadata & Download Clean Image</span>
+              </button>
+            </div>
+
+            <!-- Right: Image Preview & Sanitization Verification -->
+            <div class="glass-card metadata-card">
+              <div class="card-header" style="padding: 0 0 12px;">
+                <h3 class="card-title">Asset Visual Preview</h3>
+                <span id="metaCleanStatus" class="chip-count">Metadata Present</span>
+              </div>
+              <div class="work-canvas-stage" style="min-height: 280px;">
+                <img id="metaPreviewImg" src="" alt="Metadata Preview" style="max-width: 100%; max-height: 280px; object-fit: contain; border-radius: 8px;">
+              </div>
+              <div style="background: rgba(255,255,255,0.7); border-radius: 8px; padding: 12px; border: 1px solid rgba(167,139,250,0.3); font-size: 0.78rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                  <span class="text-secondary">EXIF Payload Size:</span>
+                  <span id="metaPayloadSize" class="text-pink font-mono">~4.2 KB (14 tags)</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span class="text-secondary">Cleaned Image Size:</span>
+                  <span id="metaCleanPayload" class="text-cyan font-mono">0 Bytes (100% Stripped)</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast glass-pill hidden">
+    <span id="toastIcon" class="toast-icon">&#10003;</span>
+    <span id="toastMessage" class="toast-message">Operation successful!</span>
+  </div>
+
+  <script src="app.js?v=3.2"></script>
+</body>
+</html>
