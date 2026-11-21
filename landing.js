@@ -15,11 +15,29 @@ class LandingHologramCanvas {
     this.mouseX = window.innerWidth / 2;
     this.mouseY = window.innerHeight / 2;
     this.time = 0;
+    this.theme = localStorage.getItem('privacylens_theme') || 'night';
 
     this.resize();
     this.init();
     this.bindEvents();
     this.animate();
+  }
+
+  setTheme(themeName) {
+    this.theme = (themeName === 'white') ? 'white' : 'night';
+    if (this.theme === 'white') {
+      this.waves = [
+        { y: 0.65, length: 0.0025, amplitude: 55, speed: 0.014, color: 'rgba(192, 132, 252, 0.35)' },
+        { y: 0.75, length: 0.0018, amplitude: 70, speed: -0.011, color: 'rgba(56, 189, 248, 0.38)' },
+        { y: 0.82, length: 0.0035, amplitude: 40, speed: 0.016, color: 'rgba(167, 139, 250, 0.32)' }
+      ];
+    } else {
+      this.waves = [
+        { y: 0.65, length: 0.0025, amplitude: 55, speed: 0.014, color: 'rgba(139, 92, 246, 0.16)' },
+        { y: 0.75, length: 0.0018, amplitude: 70, speed: -0.011, color: 'rgba(6, 182, 212, 0.12)' },
+        { y: 0.82, length: 0.0035, amplitude: 40, speed: 0.016, color: 'rgba(236, 72, 153, 0.1)' }
+      ];
+    }
   }
 
   resize() {
@@ -48,11 +66,19 @@ class LandingHologramCanvas {
       });
     }
 
-    this.waves = [
-      { y: 0.65, length: 0.0025, amplitude: 55, speed: 0.014, color: 'rgba(139, 92, 246, 0.16)' },
-      { y: 0.75, length: 0.0018, amplitude: 70, speed: -0.011, color: 'rgba(6, 182, 212, 0.12)' },
-      { y: 0.82, length: 0.0035, amplitude: 40, speed: 0.016, color: 'rgba(236, 72, 153, 0.1)' }
-    ];
+    if (this.theme === 'white') {
+      this.waves = [
+        { y: 0.65, length: 0.0025, amplitude: 55, speed: 0.014, color: 'rgba(192, 132, 252, 0.35)' },
+        { y: 0.75, length: 0.0018, amplitude: 70, speed: -0.011, color: 'rgba(56, 189, 248, 0.38)' },
+        { y: 0.82, length: 0.0035, amplitude: 40, speed: 0.016, color: 'rgba(167, 139, 250, 0.32)' }
+      ];
+    } else {
+      this.waves = [
+        { y: 0.65, length: 0.0025, amplitude: 55, speed: 0.014, color: 'rgba(139, 92, 246, 0.16)' },
+        { y: 0.75, length: 0.0018, amplitude: 70, speed: -0.011, color: 'rgba(6, 182, 212, 0.12)' },
+        { y: 0.82, length: 0.0035, amplitude: 40, speed: 0.016, color: 'rgba(236, 72, 153, 0.1)' }
+      ];
+    }
   }
 
   bindEvents() {
@@ -72,16 +98,27 @@ class LandingHologramCanvas {
     this.time += 1;
     this.ctx.clearRect(0, 0, this.width, this.height);
 
-    // Deep Midnight Gradient Base
-    const bgGrad = this.ctx.createRadialGradient(
-      this.width * 0.5, this.height * 0.25, 60,
-      this.width * 0.5, this.height * 0.65, this.width * 0.85
-    );
-    bgGrad.addColorStop(0, '#100726');
-    bgGrad.addColorStop(0.5, '#0b041a');
-    bgGrad.addColorStop(1, '#05020c');
-    this.ctx.fillStyle = bgGrad;
-    this.ctx.fillRect(0, 0, this.width, this.height);
+    const isWhite = (this.theme === 'white');
+    if (isWhite) {
+      const bgGrad = this.ctx.createLinearGradient(0, 0, this.width, this.height);
+      bgGrad.addColorStop(0, '#f8fbff');
+      bgGrad.addColorStop(0.35, '#edf5ff');
+      bgGrad.addColorStop(0.70, '#f4f1ff');
+      bgGrad.addColorStop(1, '#faf7ff');
+      this.ctx.fillStyle = bgGrad;
+      this.ctx.fillRect(0, 0, this.width, this.height);
+    } else {
+      // Deep Midnight Gradient Base
+      const bgGrad = this.ctx.createRadialGradient(
+        this.width * 0.5, this.height * 0.25, 60,
+        this.width * 0.5, this.height * 0.65, this.width * 0.85
+      );
+      bgGrad.addColorStop(0, '#100726');
+      bgGrad.addColorStop(0.5, '#0b041a');
+      bgGrad.addColorStop(1, '#05020c');
+      this.ctx.fillStyle = bgGrad;
+      this.ctx.fillRect(0, 0, this.width, this.height);
+    }
 
     // Flowing Holographic Waves
     this.waves.forEach((wave) => {
@@ -144,10 +181,51 @@ class LandingHologramCanvas {
 }
 
 // ============================================================================
-// 2. HERO INTERACTIVE CARD CONTROLS
+// 2. HERO INTERACTIVE CARD CONTROLS & THEME SWITCHER
 // ============================================================================
 document.addEventListener('DOMContentLoaded', () => {
-  new LandingHologramCanvas('bg-canvas');
+  const landingCanvas = new LandingHologramCanvas('bg-canvas');
+  window.landingCanvas = landingCanvas;
+
+  // Theme Switcher for Landing Page (Only Two: White & Night)
+  function applyLandingTheme(theme) {
+    const active = (theme === 'white') ? 'white' : 'night';
+    document.documentElement.setAttribute('data-theme', active);
+    localStorage.setItem('privacylens_theme', active);
+
+    const btnWhite = document.getElementById('themeLandingWhite');
+    const btnNight = document.getElementById('themeLandingNight');
+    if (btnWhite && btnNight) {
+      if (active === 'white') {
+        btnWhite.classList.add('active');
+        btnNight.classList.remove('active');
+      } else {
+        btnNight.classList.add('active');
+        btnWhite.classList.remove('active');
+      }
+    }
+    if (landingCanvas && typeof landingCanvas.setTheme === 'function') {
+      landingCanvas.setTheme(active);
+    }
+  }
+
+  const initialTheme = localStorage.getItem('privacylens_theme') || 'night';
+  applyLandingTheme(initialTheme);
+
+  const btnWhite = document.getElementById('themeLandingWhite');
+  const btnNight = document.getElementById('themeLandingNight');
+  if (btnWhite) {
+    btnWhite.addEventListener('click', (e) => {
+      e.preventDefault();
+      applyLandingTheme('white');
+    });
+  }
+  if (btnNight) {
+    btnNight.addEventListener('click', (e) => {
+      e.preventDefault();
+      applyLandingTheme('night');
+    });
+  }
 
   // Hero Card Live Toggle
   const toggleBtn = document.getElementById('heroToggleMaskBtn');

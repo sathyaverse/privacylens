@@ -17,12 +17,82 @@ class HolographicCanvas {
     this.targetMouseX = this.mouseX;
     this.targetMouseY = this.mouseY;
     this.time = 0;
+    this.theme = localStorage.getItem('privacylens_theme') || 'white';
     this.reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     this.resize();
     this.initElements();
+    this.updateThemeVisuals();
     this.bindEvents();
     this.animate();
+  }
+
+  setTheme(themeName) {
+    this.theme = (themeName === 'night') ? 'night' : 'white';
+    this.updateThemeVisuals();
+  }
+
+  updateThemeVisuals() {
+    const isNight = (this.theme === 'night');
+    if (isNight) {
+      this.waves = [
+        {
+          baseYRatio: 0.65, length: 0.0016, amplitude: 65, speed: 0.008,
+          gradStops: ['rgba(236, 72, 153, 0.48)', 'rgba(139, 92, 246, 0.22)', 'rgba(6, 2, 14, 0)'],
+          rimColor: 'rgba(236, 72, 153, 0.85)'
+        },
+        {
+          baseYRatio: 0.74, length: 0.0022, amplitude: 52, speed: -0.010,
+          gradStops: ['rgba(6, 182, 212, 0.48)', 'rgba(56, 189, 248, 0.22)', 'rgba(6, 2, 14, 0)'],
+          rimColor: 'rgba(6, 182, 212, 0.90)'
+        },
+        {
+          baseYRatio: 0.83, length: 0.0028, amplitude: 44, speed: 0.012,
+          gradStops: ['rgba(139, 92, 246, 0.45)', 'rgba(168, 85, 247, 0.20)', 'rgba(6, 2, 14, 0)'],
+          rimColor: 'rgba(168, 85, 247, 0.88)'
+        },
+        {
+          baseYRatio: 0.91, length: 0.0018, amplitude: 36, speed: -0.007,
+          gradStops: ['rgba(255, 0, 85, 0.45)', 'rgba(236, 72, 153, 0.18)', 'rgba(6, 2, 14, 0)'],
+          rimColor: 'rgba(255, 0, 85, 0.92)'
+        }
+      ];
+      if (this.particles) {
+        const nightColors = ['#ff0055', '#06b6d4', '#8b5cf6', '#22d3ee', '#ec4899', '#ffffff'];
+        this.particles.forEach(p => {
+          p.color = nightColors[Math.floor(Math.random() * nightColors.length)];
+        });
+      }
+    } else {
+      this.waves = [
+        {
+          baseYRatio: 0.65, length: 0.0016, amplitude: 65, speed: 0.008,
+          gradStops: ['rgba(192, 132, 252, 0.42)', 'rgba(221, 214, 254, 0.20)', 'rgba(255, 255, 255, 0)'],
+          rimColor: 'rgba(255, 255, 255, 0.95)'
+        },
+        {
+          baseYRatio: 0.74, length: 0.0022, amplitude: 52, speed: -0.010,
+          gradStops: ['rgba(56, 189, 248, 0.45)', 'rgba(186, 230, 253, 0.22)', 'rgba(255, 255, 255, 0)'],
+          rimColor: 'rgba(255, 255, 255, 0.98)'
+        },
+        {
+          baseYRatio: 0.83, length: 0.0028, amplitude: 44, speed: 0.012,
+          gradStops: ['rgba(167, 139, 250, 0.42)', 'rgba(233, 213, 255, 0.18)', 'rgba(255, 255, 255, 0)'],
+          rimColor: 'rgba(255, 255, 255, 0.95)'
+        },
+        {
+          baseYRatio: 0.91, length: 0.0018, amplitude: 36, speed: -0.007,
+          gradStops: ['rgba(6, 182, 212, 0.45)', 'rgba(165, 243, 252, 0.20)', 'rgba(255, 255, 255, 0)'],
+          rimColor: 'rgba(255, 255, 255, 0.98)'
+        }
+      ];
+      if (this.particles) {
+        const whiteColors = ['#ffffff', '#38bdf8', '#c084fc', '#a5f3fc', '#ddd6fe'];
+        this.particles.forEach(p => {
+          p.color = whiteColors[Math.floor(Math.random() * whiteColors.length)];
+        });
+      }
+    }
   }
 
   resize() {
@@ -182,33 +252,65 @@ class HolographicCanvas {
 
   drawAmbientMeshGradient() {
     const t = this.time * 0.003;
-    // Base crystalline off-white to soft icy blue & lavender gradient
-    const baseGrad = this.ctx.createLinearGradient(0, 0, this.width, this.height);
-    baseGrad.addColorStop(0, '#f8fbff');    // pure crystalline pearl
-    baseGrad.addColorStop(0.35, '#edf5ff'); // soft icy blue
-    baseGrad.addColorStop(0.70, '#f4f1ff'); // delicate lavender mist
-    baseGrad.addColorStop(1, '#faf7ff');    // airy lavender white
-    this.ctx.fillStyle = baseGrad;
-    this.ctx.fillRect(0, 0, this.width, this.height);
+    const isNight = (this.theme === 'night');
 
-    // Dynamic Breathing Ambient Light Orbs (Soft Cyan & Soft Violet)
-    const orb1X = this.width * (0.32 + 0.14 * Math.sin(t * 0.7));
-    const orb1Y = this.height * (0.28 + 0.12 * Math.cos(t * 0.9));
-    const orb1 = this.ctx.createRadialGradient(orb1X, orb1Y, 10, orb1X, orb1Y, this.width * 0.55);
-    orb1.addColorStop(0, 'rgba(186, 230, 253, 0.42)'); // soft cyan-blue
-    orb1.addColorStop(0.45, 'rgba(199, 210, 254, 0.18)'); // soft periwinkle
-    orb1.addColorStop(1, 'rgba(255, 255, 255, 0)');
-    this.ctx.fillStyle = orb1;
-    this.ctx.fillRect(0, 0, this.width, this.height);
+    if (isNight) {
+      // Midnight gradient
+      const baseGrad = this.ctx.createLinearGradient(0, 0, this.width, this.height);
+      baseGrad.addColorStop(0, '#06020e');
+      baseGrad.addColorStop(0.35, '#0b041c');
+      baseGrad.addColorStop(0.75, '#12072e');
+      baseGrad.addColorStop(1, '#06020e');
+      this.ctx.fillStyle = baseGrad;
+      this.ctx.fillRect(0, 0, this.width, this.height);
 
-    const orb2X = this.width * (0.75 + 0.12 * Math.cos(t * 0.8));
-    const orb2Y = this.height * (0.68 + 0.14 * Math.sin(t * 1.0));
-    const orb2 = this.ctx.createRadialGradient(orb2X, orb2Y, 10, orb2X, orb2Y, this.width * 0.52);
-    orb2.addColorStop(0, 'rgba(221, 214, 254, 0.38)'); // soft lavender
-    orb2.addColorStop(0.5, 'rgba(224, 242, 254, 0.18)'); // crystalline cyan
-    orb2.addColorStop(1, 'rgba(255, 255, 255, 0)');
-    this.ctx.fillStyle = orb2;
-    this.ctx.fillRect(0, 0, this.width, this.height);
+      // Glowing Neon Orbs (Neon Violet & Cyan)
+      const orb1X = this.width * (0.32 + 0.14 * Math.sin(t * 0.7));
+      const orb1Y = this.height * (0.28 + 0.12 * Math.cos(t * 0.9));
+      const orb1 = this.ctx.createRadialGradient(orb1X, orb1Y, 10, orb1X, orb1Y, this.width * 0.55);
+      orb1.addColorStop(0, 'rgba(139, 92, 246, 0.32)');
+      orb1.addColorStop(0.5, 'rgba(236, 72, 153, 0.14)');
+      orb1.addColorStop(1, 'rgba(6, 2, 14, 0)');
+      this.ctx.fillStyle = orb1;
+      this.ctx.fillRect(0, 0, this.width, this.height);
+
+      const orb2X = this.width * (0.75 + 0.12 * Math.cos(t * 0.8));
+      const orb2Y = this.height * (0.68 + 0.14 * Math.sin(t * 1.0));
+      const orb2 = this.ctx.createRadialGradient(orb2X, orb2Y, 10, orb2X, orb2Y, this.width * 0.52);
+      orb2.addColorStop(0, 'rgba(6, 182, 212, 0.30)');
+      orb2.addColorStop(0.5, 'rgba(139, 92, 246, 0.14)');
+      orb2.addColorStop(1, 'rgba(6, 2, 14, 0)');
+      this.ctx.fillStyle = orb2;
+      this.ctx.fillRect(0, 0, this.width, this.height);
+    } else {
+      // Base crystalline off-white to soft icy blue & lavender gradient
+      const baseGrad = this.ctx.createLinearGradient(0, 0, this.width, this.height);
+      baseGrad.addColorStop(0, '#f8fbff');    // pure crystalline pearl
+      baseGrad.addColorStop(0.35, '#edf5ff'); // soft icy blue
+      baseGrad.addColorStop(0.70, '#f4f1ff'); // delicate lavender mist
+      baseGrad.addColorStop(1, '#faf7ff');    // airy lavender white
+      this.ctx.fillStyle = baseGrad;
+      this.ctx.fillRect(0, 0, this.width, this.height);
+
+      // Dynamic Breathing Ambient Light Orbs (Soft Cyan & Soft Violet)
+      const orb1X = this.width * (0.32 + 0.14 * Math.sin(t * 0.7));
+      const orb1Y = this.height * (0.28 + 0.12 * Math.cos(t * 0.9));
+      const orb1 = this.ctx.createRadialGradient(orb1X, orb1Y, 10, orb1X, orb1Y, this.width * 0.55);
+      orb1.addColorStop(0, 'rgba(186, 230, 253, 0.42)'); // soft cyan-blue
+      orb1.addColorStop(0.45, 'rgba(199, 210, 254, 0.18)'); // soft periwinkle
+      orb1.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      this.ctx.fillStyle = orb1;
+      this.ctx.fillRect(0, 0, this.width, this.height);
+
+      const orb2X = this.width * (0.75 + 0.12 * Math.cos(t * 0.8));
+      const orb2Y = this.height * (0.68 + 0.14 * Math.sin(t * 1.0));
+      const orb2 = this.ctx.createRadialGradient(orb2X, orb2Y, 10, orb2X, orb2Y, this.width * 0.52);
+      orb2.addColorStop(0, 'rgba(221, 214, 254, 0.38)'); // soft lavender
+      orb2.addColorStop(0.5, 'rgba(224, 242, 254, 0.18)'); // crystalline cyan
+      orb2.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      this.ctx.fillStyle = orb2;
+      this.ctx.fillRect(0, 0, this.width, this.height);
+    }
   }
 
   drawRotating3DRings() {
@@ -493,6 +595,7 @@ class PrivacyLensDashboard {
   }
 
   init() {
+    this.initThemeSwitcher();
     this.bindNavigation();
     this.bindTopbarActions();
     this.renderDashboardKpis();
@@ -507,6 +610,53 @@ class PrivacyLensDashboard {
     this.loadSampleIntoWorkspace('risk', 'id');
     this.loadSampleIntoWorkspace('compare', 'id');
     this.loadSampleIntoWorkspace('meta', 'exif');
+  }
+
+  // ==========================================================================
+  // THEME SWITCHER: ONLY TWO (WHITE & NIGHT)
+  // ==========================================================================
+  initThemeSwitcher() {
+    const savedTheme = localStorage.getItem('privacylens_theme') || 'white';
+    this.applyTheme(savedTheme);
+
+    const btnWhite = document.getElementById('themeBtnWhite');
+    const btnNight = document.getElementById('themeBtnNight');
+
+    if (btnWhite) {
+      btnWhite.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.applyTheme('white');
+      });
+    }
+
+    if (btnNight) {
+      btnNight.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.applyTheme('night');
+      });
+    }
+  }
+
+  applyTheme(theme) {
+    const activeTheme = (theme === 'night') ? 'night' : 'white';
+    document.documentElement.setAttribute('data-theme', activeTheme);
+    localStorage.setItem('privacylens_theme', activeTheme);
+
+    const btnWhite = document.getElementById('themeBtnWhite');
+    const btnNight = document.getElementById('themeBtnNight');
+    if (btnWhite && btnNight) {
+      if (activeTheme === 'white') {
+        btnWhite.classList.add('active');
+        btnNight.classList.remove('active');
+      } else {
+        btnNight.classList.add('active');
+        btnWhite.classList.remove('active');
+      }
+    }
+
+    if (window.holographicCanvas && typeof window.holographicCanvas.setTheme === 'function') {
+      window.holographicCanvas.setTheme(activeTheme);
+    }
   }
 
   // ==========================================================================
@@ -2022,7 +2172,7 @@ class PrivacyLensDashboard {
 function initPrivacyLensDashboard() {
   if (window.__privacyLensInitialized) return;
   window.__privacyLensInitialized = true;
-  new HolographicCanvas('bg-canvas');
+  window.holographicCanvas = new HolographicCanvas('bg-canvas');
   window.dashboardApp = new PrivacyLensDashboard();
 }
 

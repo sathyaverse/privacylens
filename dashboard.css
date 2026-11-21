@@ -51,7 +51,12 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Reset & Base HTML/Body (Guaranteed Light Canvas) */
+/* Transition for smooth theme switching */
+html, body, .dashboard-root, .cyber-sidebar, .dashboard-topbar, .glass-card, .glass-pill, .work-canvas-stage, .mini-dropzone, .btn-glass, .btn-topbar-sample, .face-style-btn, .theme-switcher-pill {
+  transition: background 0.35s ease, background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Reset & Base HTML/Body (Default: White Theme) */
 html, body.dashboard-body {
   margin: 0 !important;
   padding: 0 !important;
@@ -65,7 +70,7 @@ html, body.dashboard-body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Fixed Background Canvas with Instant Light Gradient Fallback */
+/* Fixed Background Canvas with Instant Gradient Fallback */
 #bg-canvas {
   position: fixed !important;
   top: 0 !important;
@@ -76,6 +81,242 @@ html, body.dashboard-body {
   pointer-events: none !important;
   display: block !important;
   background: linear-gradient(135deg, #f8fbff 0%, #edf5ff 35%, #f4f1ff 70%, #faf7ff 100%) !important;
+}
+
+/* ==========================================================================
+   NIGHT THEME (ONLY TWO THEMES: WHITE & NIGHT)
+   ========================================================================== */
+[data-theme="night"],
+[data-theme="night"] body.dashboard-body {
+  --bg-deep: #06020e;
+  --bg-surface: #0b041c;
+  --bg-glass-card: rgba(18, 10, 36, 0.75);
+  --bg-glass-card-hover: rgba(28, 15, 54, 0.85);
+  --bg-glass-panel: rgba(14, 8, 28, 0.8);
+  --bg-glass-pill: rgba(25, 14, 48, 0.75);
+
+  --card-border: rgba(168, 85, 247, 0.28);
+  --card-border-glow: rgba(6, 182, 212, 0.65);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --shadow-glass: 0 12px 40px rgba(0, 0, 0, 0.6);
+  --shadow-glow-violet: 0 0 25px rgba(139, 92, 246, 0.45);
+  --shadow-glow-cyan: 0 0 25px rgba(6, 182, 212, 0.45);
+  --shadow-glow-pink: 0 0 20px rgba(244, 63, 94, 0.45);
+
+  background: #06020e !important;
+  background-color: #06020e !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="night"] #bg-canvas {
+  background: linear-gradient(135deg, #06020e 0%, #0b041c 45%, #12072e 100%) !important;
+}
+
+[data-theme="night"] .dashboard-root {
+  color: #f8fafc !important;
+}
+
+[data-theme="night"] .cyber-sidebar {
+  background: rgba(14, 8, 28, 0.85) !important;
+  border-right-color: rgba(168, 85, 247, 0.28) !important;
+  box-shadow: 4px 0 28px rgba(0, 0, 0, 0.6), inset -1px 0 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="night"] .sidebar-title {
+  color: #f8fafc !important;
+}
+
+[data-theme="night"] .sidebar-item {
+  color: #94a3b8 !important;
+}
+
+[data-theme="night"] .sidebar-item:hover {
+  background: rgba(139, 92, 246, 0.12) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="night"] .sidebar-item.active {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.25) 0%, rgba(6, 182, 212, 0.2) 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(168, 85, 247, 0.45) !important;
+}
+
+[data-theme="night"] .dashboard-topbar {
+  background: rgba(14, 8, 28, 0.82) !important;
+  border-bottom-color: rgba(168, 85, 247, 0.28) !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="night"] .glass-card {
+  background: rgba(18, 10, 36, 0.75) !important;
+  border-color: rgba(168, 85, 247, 0.28) !important;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.08) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="night"] .glass-pill {
+  background: rgba(25, 14, 48, 0.75) !important;
+  border-color: rgba(168, 85, 247, 0.3) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="night"] .work-canvas-stage {
+  background: radial-gradient(circle at center, #0f0820 0%, #06020e 100%) !important;
+  border-color: rgba(168, 85, 247, 0.3) !important;
+}
+
+[data-theme="night"] .card-title,
+[data-theme="night"] .view-headline,
+[data-theme="night"] .kpi-value,
+[data-theme="night"] .score-number {
+  color: #f8fafc !important;
+}
+
+[data-theme="night"] .kpi-label,
+[data-theme="night"] .view-lead,
+[data-theme="night"] .empty-sub,
+[data-theme="night"] .text-secondary {
+  color: #94a3b8 !important;
+}
+
+[data-theme="night"] .mini-dropzone {
+  background: rgba(18, 10, 36, 0.6) !important;
+  border-color: rgba(168, 85, 247, 0.35) !important;
+}
+
+[data-theme="night"] .form-control,
+[data-theme="night"] .form-textarea,
+[data-theme="night"] .form-select {
+  background: rgba(14, 8, 28, 0.8) !important;
+  color: #f8fafc !important;
+  border-color: rgba(168, 85, 247, 0.3) !important;
+}
+
+[data-theme="night"] .table-row {
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="night"] .table-row:hover {
+  background: rgba(139, 92, 246, 0.1) !important;
+}
+
+[data-theme="night"] .btn-glass {
+  background: rgba(25, 14, 48, 0.75) !important;
+  border-color: rgba(168, 85, 247, 0.3) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="night"] .btn-glass:hover {
+  background: rgba(139, 92, 246, 0.25) !important;
+  border-color: #06b6d4 !important;
+  box-shadow: 0 0 18px rgba(6, 182, 212, 0.3) !important;
+}
+
+[data-theme="night"] .btn-topbar-sample {
+  background: rgba(25, 14, 48, 0.8) !important;
+  border-color: rgba(168, 85, 247, 0.3) !important;
+  color: #cbd5e1 !important;
+}
+
+[data-theme="night"] .btn-topbar-sample:hover {
+  background: rgba(139, 92, 246, 0.25) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="night"] .face-style-btn {
+  background: rgba(25, 14, 48, 0.8) !important;
+  border-color: rgba(168, 85, 247, 0.3) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="night"] .viewport-footer {
+  background: rgba(18, 10, 36, 0.8) !important;
+  border-top-color: rgba(168, 85, 247, 0.3) !important;
+}
+
+[data-theme="night"] .toast {
+  background: rgba(18, 10, 36, 0.95) !important;
+  border-color: rgba(139, 92, 246, 0.5) !important;
+  color: #f8fafc !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(139, 92, 246, 0.3) !important;
+}
+
+[data-theme="night"] .toast-message {
+  color: #f8fafc !important;
+}
+
+/* ==========================================================================
+   THEME SWITCHER PILL (TWO OPTIONS: WHITE & NIGHT)
+   ========================================================================== */
+.theme-switcher-pill {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(167, 139, 250, 0.4);
+  border-radius: 9999px;
+  padding: 3px;
+  gap: 2px;
+  box-shadow: 0 3px 12px rgba(100, 116, 139, 0.1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+[data-theme="night"] .theme-switcher-pill {
+  background: rgba(18, 10, 36, 0.85) !important;
+  border-color: rgba(168, 85, 247, 0.45) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45) !important;
+}
+
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border: none;
+  border-radius: 9999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #64748b;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  line-height: 1;
+}
+
+[data-theme="night"] .theme-btn {
+  color: #94a3b8;
+}
+
+.theme-btn:hover {
+  color: #0f172a;
+}
+
+[data-theme="night"] .theme-btn:hover {
+  color: #f8fafc;
+}
+
+.theme-btn.active {
+  background: linear-gradient(135deg, #7c3aed, #0284c7) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(124, 58, 237, 0.35) !important;
+}
+
+.theme-btn svg {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.theme-btn.active svg {
+  transform: scale(1.12);
 }
 
 /* Overall Dashboard Container */
